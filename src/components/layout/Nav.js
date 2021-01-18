@@ -1,10 +1,16 @@
 import React, {Fragment} from 'react'
+import {NavLink} from 'react-router-dom';
+
 
 export const Nav = () => {
 	return (
-		<Fragment>
-			<h1>nav</h1>
-		</Fragment>
+		<ul className="ui menu">
+			<li className="item">
+				<NavLink to="/project/create">
+					New Project
+				</NavLink>
+			</li>
+		</ul>
 	)
 }
 

@@ -8,16 +8,18 @@ import ProjectDetails from './components/projects/ProjectDetails'
 export const App = () => {
 	return (
 		<Fragment>
+				<div className="ui container">
 			<BrowserRouter>
 				<Nav />
-				<div className="ui container">
 				<Switch>
+					<div className="wrapper">
 					<Route exact path="/" component={Dashboard} />
 					<Route path="/project/:id" component={ProjectDetails} />
 					<Route path='/project/create' component={CreateProject} />
+					</div>
 				</Switch>
-				</div>
 			</BrowserRouter>
+				</div>
 		</Fragment>
 	)
 }

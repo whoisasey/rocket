@@ -1,10 +1,11 @@
 import React, {Fragment} from 'react'
+import ProjectList from '../projects/ProjectList'
 
 export const Dashboard = () => {
 	return (
 		<Fragment>
-
-			<h1>dashboard</h1>
+		<ProjectList />
+		<ProjectList />
 		</Fragment>
 	)
 }
