@@ -1,0 +1,10 @@
+li {
+  list-style-type: none;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 80%;
+  margin: 0 auto;
+}
+/*# sourceMappingURL=global.css.map */
