@@ -4,23 +4,14 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete';
 
-const LocationSearchBar = ({props, state, handleAddresses, handleChange, handleSelect}) => {
+const LocationSearchBar = ({props, state, handleAddresses, handleChange, handleSelect, onChange, onSelect, value}) => {
 
-// 	if (state === undefined) {
-// 		return (
-// 			<div className="ui segment">
-// <div className="ui active centered inline loader"></div>
-// </div>
-// 		)
-// 	} else {
-
-	const {origin, destination, address} = state
-	
+const {address} = state
 	return (
 		<PlacesAutocomplete
 			value={address}
-			onChange={handleChange}
-			onSelect={handleSelect}
+			onChange={onChange}
+			onSelect={onSelect}
 		>
    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
@@ -56,6 +47,6 @@ const LocationSearchBar = ({props, state, handleAddresses, handleChange, handleS
         )}
 		</PlacesAutocomplete>
 	)
-		}
+    }
 
 export default LocationSearchBar
