@@ -1,9 +1,16 @@
 import React, {Fragment} from 'react'
 
 const CreateProject = () => {
+	// states - {project name, description, start, end}, {}
+
+
+
 	return (
 		<Fragment>
-			<h1>create project</h1>
+			<form className="ui form">
+
+
+			</form>
 		</Fragment>
 	)
 }

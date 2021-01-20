@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react'
+// import '../../../api/data.json'
 
 export const ProjectDetails = () => {
 	return (

@@ -6,6 +6,7 @@ import CreateProject from './components/projects/CreateProject'
 import ProjectDetails from './components/projects/ProjectDetails'
 
 export const App = () => {
+
 	return (
 		<Fragment>
 				<div className="ui container">

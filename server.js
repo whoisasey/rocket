@@ -5,7 +5,7 @@ const app = express();
 const port = 8080
 
 
-app.use('/api/projects', projectRouter)
+app.use('/data', projectRouter)
 
 
 app.listen(port, () => {
