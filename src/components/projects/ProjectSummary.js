@@ -1,9 +1,10 @@
 import React, {Fragment} from 'react'
 
-export const ProjectSummary = () => {
+export const ProjectSummary = ({project}) => {
+	const {name, id, description, startLocation, endLocation} = project
 	return (
 		<div className="ui card">
-			<h2>project summary</h2>
+			<h2>{name}</h2>
 		</div>
 	)
 }

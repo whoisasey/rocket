@@ -4,12 +4,9 @@ import Nav from './components/layout/Nav.js'
 import Dashboard from './components/dashboard/Dashboard'
 import CreateProject from './components/projects/CreateProject'
 import ProjectDetails from './components/projects/ProjectDetails'
-import {connect} from 'react-redux';
 
+const App = () => {
 
-const App = (props) => {
-const {projects} = props;
-console.log(projects)
 	return (
 		<Fragment>
 				<div className="ui container">
@@ -18,8 +15,8 @@ console.log(projects)
 				<Switch>
 					<div className="wrapper">
 					<Route exact path="/" component={Dashboard} />
-					<Route path="/project/:id" component={ProjectDetails} />
-					<Route path='/project/create' component={CreateProject} />
+					<Route exact path="/project/:id" component={ProjectDetails} />
+					<Route exact path='/create' component={CreateProject} />
 					</div>
 				</Switch>
 			</BrowserRouter>
@@ -28,10 +25,5 @@ console.log(projects)
 	)
 }
 
-const mapStateToProps = (state) => {
-	return {
-		projects: state.data
-	}
-	
-}
-export default connect(mapStateToProps)(App)
+
+export default App

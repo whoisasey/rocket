@@ -6,7 +6,10 @@ export const Nav = () => {
 	return (
 		<ul className="ui menu">
 			<li className="item">
-				<NavLink to="/project/create">
+				<NavLink to="/">Home</NavLink>
+			</li>
+			<li className="item">
+				<NavLink to="/create">
 					New Project
 				</NavLink>
 			</li>

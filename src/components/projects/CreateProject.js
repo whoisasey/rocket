@@ -1,4 +1,6 @@
 import React, {Fragment} from 'react'
+import SearchBar from '../layout/SearchBar'
+
 
 const CreateProject = () => {
 	// states - {project name, description, start, end}, {}
@@ -8,7 +10,7 @@ const CreateProject = () => {
 	return (
 		<Fragment>
 			<form className="ui form">
-
+				<SearchBar />
 
 			</form>
 		</Fragment>
