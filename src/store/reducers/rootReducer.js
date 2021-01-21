@@ -39,7 +39,16 @@ const initState = {
 
 
 const rootReducer = (state = initState, action) => {
-	return state
+	switch (action.type) {
+		case 'CREATE_PROFILE': 
+			console.log('created profile', action.profile);
+			return state;
+		case 'CREATE_PROFILE_ERROR':
+			console.log('create profile error', action.err);
+			return state;
+		default:
+			return state
+		}
 }
 
 export default rootReducer

@@ -1,3 +1,5 @@
+//uses react-place-autocomplete library as a function component
+
 import React, {Component, useState} from 'react';
 import PlacesAutocomplete, {
   geocodeByAddress,

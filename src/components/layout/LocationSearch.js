@@ -1,3 +1,5 @@
+//react-places-autocomplete class component
+
 import React, {Component} from 'react';
 import PlacesAutocomplete, {
   geocodeByAddress,
