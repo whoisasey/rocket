@@ -9,66 +9,16 @@ import {gapikey} from '../../api/keys'
 // draw multiple lines based on what input is added
 // start location - end location + any other locations
 
+ const SearchBar = ({state, handleChange}) => {
+	//  console.log(state)
 
-let autoComplete;
-const loadScript = (url, callback) => {
-  let script = document.createElement("script");
-  script.type = "text/javascript";
-
-  if (script.readyState) {
-    script.onreadystatechange = function() {
-      if (script.readyState === "loaded" || script.readyState === "complete") {
-        script.onreadystatechange = null;
-        callback();
-      }
-    };
-  } else {
-    script.onload = () => callback();
-  }
-
-  script.src = url;
-  document.getElementsByTagName("head")[0].appendChild(script);
-};
-
-const handleScriptLoad = (updateQuery, autoCompleteRef) => {
-  autoComplete = new window.google.maps.places.Autocomplete(
-    autoCompleteRef.current,
-    { types: ["geocode"], componentRestrictions: { country: "ca" } }
-  );
-  autoComplete.setFields(["address_components", "formatted_address", "place_id", "geometry"]);
-  autoComplete.addListener("place_changed", () =>
-    handlePlaceSelect(updateQuery)
-	);
-}
-
-
-
-const  handlePlaceSelect = async(updateQuery) =>{
-	const addressObject = autoComplete.getPlace();
-  const query = addressObject.formatted_address;
-  // const id = addressObject.place_id
-  // const query = addressObject.place_id
-  updateQuery(query);
-	// console.log(addressObject);
-}
- const SearchBar = () => {
-	const [query, setQuery] = useState([])
+	 const {origin, destination} = state;
+	// const [query, setQuery] = useState([])
 	const [value1, setValue1] = useState(null)
 	const [value2, setValue2] = useState(null)
 	const [value3, setValue3] = useState(null)
 	const [value4, setValue4] = useState(null)
-	  const autoCompleteRef = useRef(null);
 
-
-	useEffect(() => {
-    loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=${gapikey}&libraries=places`,
-      () => handleScriptLoad(setQuery, autoCompleteRef)
-    );
-  }, []);
-	// const [getLatLng, setGetLatLng] = useState("")
-	// const [address, setAddress] = useState("")
-	// const [,setOriginLatLng] = useState("")
 	const placeAPI = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?'
 	const mapsAPI = 'https://www.google.com/maps/embed/v1/directions'
 	const directionsAPI = `https://maps.googleapis.com/maps/api/directions/json?`
@@ -136,25 +86,25 @@ if (value1 && value2 && value3 !== null) {
       /> */}
 				<GooglePlacesAutoComplete apiKey={gapikey} 
 				selectProps={{
-				value1,
-				onChange: setValue1,
+				origin,
+				onChange: handleChange,
 				placeholder: 'Start Address',
 				// onSelect: handleValueSelect
 				}}
 				/>
 				<GooglePlacesAutoComplete apiKey={gapikey} 
 				selectProps={{
-				value2,
-				onChange: setValue2,
+				destination,
+				onChange: handleChange,
 				placeholder: 'End Address'
 				}}
 				/>
-				<GooglePlacesAutoComplete apiKey={gapikey} 
+				{/* <GooglePlacesAutoComplete apiKey={gapikey} 
 				selectProps={{
 				value3,
 				onChange: setValue3,
 				placeholder: 'Additional Address'
-				}} />
+				}} /> */}
 
 			</form>
 			{/* {generateIframe()} */}

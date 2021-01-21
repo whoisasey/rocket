@@ -6,7 +6,7 @@ import ProjectList from '../projects/ProjectList'
 
 const Dashboard = (props) => {
 	const {projects} = props;
-
+// console.log(props)
 	const [search, setSearch] = useState([])
 		const [term, setTerm] = useState('')
 
@@ -19,7 +19,7 @@ const Dashboard = (props) => {
 	}
 const mapStateToProps = (state) => {
 	return {
-		projects: state.data
+		projects: state.projects
 	}
 	
 }

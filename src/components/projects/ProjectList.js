@@ -1,15 +1,18 @@
 import React, {Fragment} from 'react'
-import ProjectSummary from './ProjectSummary'
+import ProjectDetails from './ProjectDetails'
 import {Link} from 'react-router-dom'
 
 export const ProjectList = ({projects}) => {
+	// console.log(projects)
 	return (
 		<div>
 			{projects && projects.map(project => {
 				return (
-					<Link>
-						<ProjectSummary project={project} key={project.id}/>
-					</Link>
+					// <Link to={`/project/${project.id}`}>
+					// <div className="ui three column grid">
+						<ProjectDetails key={project.id} project={project}/>
+					// </div>
+					// </Link>
 					)
 				}
 				)}

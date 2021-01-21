@@ -36,15 +36,14 @@ const handleScriptLoad = (updateQuery, autoCompleteRef) => {
 
 const  handlePlaceSelect = async(updateQuery) =>{
 	const addressObject = autoComplete.getPlace();
-  const query = addressObject.formatted_address;
+  const query = addressObject;
   // const id = addressObject.place_id
   // const query = addressObject.place_id
   updateQuery(query);
-	// console.log(addressObject);
+	// console.log(query);
 }
 
-const SearchLocationInput = ({query, setQuery}) => {
-  const autoCompleteRef = useRef(null);
+const SearchLocationInput = ({query, setQuery, autoCompleteRef}) => {
 
   useEffect(() => {
     loadScript(
@@ -52,6 +51,12 @@ const SearchLocationInput = ({query, setQuery}) => {
       () => handleScriptLoad(setQuery, autoCompleteRef)
     );
   }, []);
+  //   useEffect(() => {
+  //   loadScript(
+  //     `https://maps.googleapis.com/maps/api/js?key=${gapikey}&libraries=places`,
+  //     () => handleScriptLoad(setQuery2, autoCompleteRef2)
+  //   );
+  // }, []);
 
   return (
 		<Fragment>
@@ -60,7 +65,7 @@ const SearchLocationInput = ({query, setQuery}) => {
         ref={autoCompleteRef}
         onChange={event => setQuery(event.target.value)}
         placeholder="Enter a City"
-        value={query}
+        value={query.formatted_address}
       />
     </div>
 		{/* <LocationMap gapikey={gapikey} query={query}/> */}
