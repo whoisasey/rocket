@@ -13,6 +13,9 @@ export const Nav = () => {
 					New Project
 				</NavLink>
 			</li>
+			<li className="item">
+				<NavLink to='/routes'>Get Routes</NavLink>
+			</li>
 		</ul>
 	)
 }

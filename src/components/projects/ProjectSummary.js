@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react'
-
 export const ProjectSummary = ({project}) => {
-	console.log("single project?", project)
+	// console.log("single project?", project)
 	const {name, id, description, origin, destination} = project
 	// console.log(project)
 	return (
