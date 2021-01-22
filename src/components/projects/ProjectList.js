@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom'
 
 export const ProjectList = ({projects}) => {
 	// console.log(projects)
+	const sortedProjs = projects.sort((a,b) => b.createdAt - a.createdAt)
+	console.log(sortedProjs)
 	return (
 		<div>
 			{projects && projects.map(project => {

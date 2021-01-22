@@ -13,11 +13,11 @@ const ProjectDetails = ({ project}) => {
 			)
 	} else {
 
-	const {name, description, origin, destination} = project
+	const {name, description, origin_name, destination_name} = project;
 	return (
 		<div className="ui fluid card">
 			<div className="content">
-				<div className="header">{name}</div>
+				<div className="header">{`${origin_name} to ${destination_name}`}</div>
 			</div>
 			<div className="content">
 				<div className="event">
@@ -26,8 +26,8 @@ const ProjectDetails = ({ project}) => {
 			</div>
 			<div className="content">
 				<div className="event">
-					<strong>Origin:</strong> {origin}
-					<br/><strong>Destination:</strong> {destination}
+					<strong>Origin:</strong> {origin_name}
+					<br/><strong>Destination:</strong> {destination_name}
 				</div>
 			</div>
 

@@ -22,13 +22,17 @@ class CreateProjectForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state ={
-			name: "",
+			name: [],
 			description: '',
-			origin: [],
-			destination: [],
+			origin_name: [],
+			origin_id: [],
+			destination_id: [],
+			destination_name: [],
 			addresses: [],
+			createdAt: new Date(),
+
 		}
-		// console.log("props", props.projects)
+		// console.log("props", props)
 		 } 
 
 	handleChange =(e) => {
@@ -41,36 +45,34 @@ class CreateProjectForm extends Component {
 	}
 
 	handleOrigin = e => {
-		// console.log(e)
 		const {place_id, description} = e.value
-		const {origin} = this.state
+		const {origin_id, origin_name} = this.state
 		this.setState({
-			origin: origin.push({id: place_id, name: description})
+			origin_id: origin_id.concat(place_id),
+			origin_name: origin_name.concat(description)
 		})
-		console.log(origin[0])
 	}
 
 	handleDestination = e => {
 		const {place_id, description} = e.value
-		const {destination} = this.state
+		const {destination_id, destination_name} = this.state
 		this.setState({
-			destination: destination.push({id: place_id, name: description})
+			destination_id: destination_id.concat(place_id),
+			destination_name: destination_name.concat(description)
 		})
-		console.log(destination[0])
 	}
 		
 	handleSubmit = (e) => {
-		const {createProject} = this.props
+		const {createProject, history} = this.props
 		e.preventDefault();
 		e.stopPropagation()
-		// createProject(this.state)
+		createProject(this.state)
+		history.push('/')
 
-		const {addresses, origin, destination, name} = this.state;
+		const {addresses, origin_id, destination_id, origin_name, destination_name, name} = this.state;
 		this.setState({
-			addresses: addresses.push(origin, destination),
-			// name: name.push()
+			addresses: addresses.push(origin_id, destination_id),
 		})
-		// console.log(origin[0])
 		console.log("state", this.state)
 	}
 		//  handleAddresses = (e) => {
@@ -113,7 +115,7 @@ class CreateProjectForm extends Component {
 			>
 				<Inputs 
 					label="Project Name"
-					value="test"
+					// placeholder="test"
 					type="text"
 					id={name}
 					name={name}
@@ -121,7 +123,7 @@ class CreateProjectForm extends Component {
 				/>
 			<Inputs 
 					label="Project Description"
-					value="test"
+					// value="test"
 					type="text"
 					id={description}
 					name={description}
