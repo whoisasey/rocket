@@ -6,8 +6,9 @@ import { deleteProject } from '../../store/actions/projectActions';
 
  const ProjectSummary = ({project, props}) => {
 
-	const {name, description, origin_id, origin_name, destination_id, destination_name, id} = project;
+	const {name, description, origin_add, origin_name, destination_add, destination_name, id, origin_geo, destination_geo} = project;
 		const map_api = `https://www.google.com/maps/embed/v1/directions`
+
 
 		const embed = () => {
 		return (
@@ -15,7 +16,7 @@ import { deleteProject } from '../../store/actions/projectActions';
 			width="450"
 			height="250"
 			frameBorder="0"
-			src={`${map_api}?key=${gapikey}&origin=place_id:${origin_id}&destination=place_id:${destination_id}`} allowFullScreen>
+			src={`${map_api}?key=${gapikey}&origin=${origin_geo.lat},${origin_geo.lng}&destination=${destination_geo.lat},${destination_geo.lng}`} allowFullScreen>
 			</iframe>
 		)
 	}
@@ -27,9 +28,13 @@ import { deleteProject } from '../../store/actions/projectActions';
 	return (
 		<Fragment>
 			<h2>{`${origin_name} to ${destination_name}`}</h2>
+			<p>{`Start: ${origin_add}`}</p>
+			<p>{`End: ${destination_add}`}</p>
 			<p>{description}</p>
 			<button className="ui button">Edit</button>
 			<button className="ui button" onClick={()=>handleDelete(id)}>Delete</button>
+
+			<h3>Your Suggested Driving Route</h3>
 				{embed()}
 		</Fragment>
 	)

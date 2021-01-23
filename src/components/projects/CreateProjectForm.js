@@ -4,7 +4,7 @@ import GooglePlacesAutoComplete, {geocodeByAddress, getLatLng} from 'react-googl
 import {gapikey} from '../../api/keys'
 import {Inputs} from './FormComponents/Inputs'
 import {createProject} from '../../store/actions/projectActions'
-
+import uuid from 'react-uuid'
 const geocode = `https://maps.googleapis.com/maps/api/geocode/json?address=`
 const address = `Toronto,ON`
 
@@ -12,12 +12,15 @@ class CreateProjectForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state ={
-			name: [],
+			name: '',
+			id: uuid(),
 			description: '',
-			origin_name: [],
-			origin_id: [],
-			destination_id: [],
-			destination_name: [],
+			origin_name: '',
+			origin_add: [], //get address from lat/lang and setstate? 
+			origin_geo: {},//get origin lat/lang and setstate
+			destination_add: [], //get address from lat/lang and setstate
+			destination_geo: {}, //get destination lat/lang and setstate
+			destination_name: '',
 			addresses: [],
 			createdAt: new Date(),
 			coords: []
@@ -35,22 +38,20 @@ class CreateProjectForm extends Component {
 	}
 
 	handleOrigin = e => {
-		const {place_id, description} = e.value
-		const {origin_id, origin_name} = this.state
+		const { description} = e.value
 		this.setState({
-			origin_id: origin_id.concat(place_id),
-			origin_name: origin_name.concat(description)
+			origin_name: description,
 		})
-		console.log(origin_id, origin_name)
 	}
 
-	handleDestination = e => {
-		const {place_id, description} = e.value
-		const {destination_id, destination_name} = this.state
-		this.setState({
-			destination_id: destination_id.concat(place_id),
-			destination_name: destination_name.concat(description)
-		})
+	handleDestination = async (e) => {
+		const {description} = e.value
+		const geo = await this.destination_geocode(description)
+		console.log(geo)
+		// console.log("lat lng", this.destination_geocode(description))
+		// this.setState({
+		// 	destination_name: description
+		// })
 	}
 		
 	handleSubmit = (e) => {
@@ -60,64 +61,40 @@ class CreateProjectForm extends Component {
 		// createProject(this.state)
 		// history.push('/')
 
-		const {addresses, origin_id, destination_id, origin_name, destination_name, name} = this.state;
-
-		// const origin_coords =  this.getCoordinates(origin_name)
-		// const destin_coords =  this.getCoordinates(destination_name)
-		// console.log(origin_coords, destin_coords)
-		this.setState({
-			addresses: addresses.push(origin_id, destination_id),
-		})
+		const {addresses, origin_geo, origin_name, destination_name, destination_geo, name} = this.state;
+		const origin =  this.origin_geocode(origin_name)
+		console.log(origin)
+		// this.setState({
+		// 	origin_geo: origin
+		// })
+			// this.destination_geocode(destination_name)
 		console.log("state", this.state)
 	}
 
-	// getCoordinates = async(address) => {
-	// 	return (await fetch(`${geocode}${address}&key=${gapikey}`)).json()
-	// }
+	origin_geocode =  (location) => {
+		geocodeByAddress(location).then(results => 	getLatLng(results[0]))
+		.then(({ lat, lng }) =>{
+			console.log({lat, lng})
+			return { lat, lng }
 	
-	// getCoordinates =  async (address) => {
-	// 	try {
-	// 		const response =  await fetch(`${geocode}${address}&key=${gapikey}`);
-	// 		const data = await response.json()
-	// 		console.log(data.results[0].geometry.location)
-	// 		// location.push(data.results[0].geometry.location)
-	// 		return data.results
-	// 	} catch (err){
-	// 		console.log(err)
-	// 		}
-	// 	}
+		})
+	};
 
-	getCoordinates = async (address) => {
-		let response = await fetch(`${geocode}${address}&key=${gapikey}`)
-		let data = await response.json()
-		let updatedData = data.results
-		console.log(updatedData)
-		this.state.addresses.push(updatedData)
+	destination_geocode = async (location) => {
+		await geocodeByAddress(location).then(results => 	getLatLng(results[0]))
+		.then(({ lat, lng }) =>{
+			console.log({lat, lng})
+			return { lat, lng }
+		// 	this.setState({
+		// 		destination_geo: {lat, lng}
+		// 	})
+		})
+	};
 
-		return
-	}
-	
-	// 	returnData = async(place) => {
-	// 	location = await this.getCoordinates(place)
-	// 	console.log(location.results[0].geometry.location)
-	// 		return location
-	// }
 	render() {
-		
-		// this.getCoordinates(address)
-		// console.log(this.state.addresses)
 
-			// const data = async (place) => {
-			// 	let data = []
-			// 	try {
-			// 		data = await this.getCoordinates(place)
-			// 	} catch (e) {
-			// 		console.error("error", e)
-			// 	}
-			// 	return data
-			// }
 
-		const {name,description, origin, destination} = this.state
+		const {name,description, origin, destination, origin_name, destination_name} = this.state
 	return (
 		<Fragment>
 			<form className="ui form"
@@ -144,7 +121,7 @@ class CreateProjectForm extends Component {
 
 				<GooglePlacesAutoComplete apiKey={gapikey} 
 				selectProps={{
-				origin,
+				origin_name,
 				onChange: (e)=>this.handleOrigin(e),
 				placeholder: 'Start Address',
 				// onSelect: handleValueSelect
@@ -152,7 +129,7 @@ class CreateProjectForm extends Component {
 				/>
 				<GooglePlacesAutoComplete apiKey={gapikey} 
 				selectProps={{
-				destination,
+				destination_name,
 				onChange: (e)=>this.handleDestination(e),
 				placeholder: 'End Address'
 				}}
