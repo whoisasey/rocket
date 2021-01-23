@@ -1,16 +1,16 @@
-//react-places-autocomplete class component
+//react-places-autocomplete class component - DEAD
 
 import React, {Component} from 'react';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-import keys from '../../api/keys'
+import {gapikey} from '../api/keys'
 
-	const KEY = keys.gapikey
-	const placeAPI = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?'
-	const mapsAPI = 'https://www.google.com/maps/embed/v1/directions'
-	const directionsAPI = `https://maps.googleapis.com/maps/api/directions/json?`
+	// const KEY = keys.gapikey
+	// const placeAPI = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?'
+	// const mapsAPI = 'https://www.google.com/maps/embed/v1/directions'
+	// const directionsAPI = `https://maps.googleapis.com/maps/api/directions/json?`
 
 
 class LocationSearch extends Component {
@@ -29,6 +29,7 @@ class LocationSearch extends Component {
       .then(results => getLatLng(results[0]))
       .then(latLng => console.log('Success', latLng))
       .catch(error => console.error('Error', error));
+    this.setState({address    })
   };
 
   render() {

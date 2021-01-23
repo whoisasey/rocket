@@ -6,13 +6,12 @@ import ProjectList from '../projects/ProjectList'
 
 const Dashboard = (props) => {
 	const {projects} = props;
-// console.log(props)
-	const [search, setSearch] = useState([])
-		const [term, setTerm] = useState('')
 
 		return (
 			<Fragment>
-				<ProjectList projects={projects}/>
+				<ProjectList 
+				projects={projects}
+				/>
 			</Fragment>
 		)
 
@@ -21,7 +20,6 @@ const mapStateToProps = (state) => {
 	return {
 		projects: state.projects
 	}
-	
 }
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect( mapStateToProps)(Dashboard)

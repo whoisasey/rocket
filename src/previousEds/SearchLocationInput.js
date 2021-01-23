@@ -1,7 +1,7 @@
 // custom  autocomplete - https://medium.com/better-programming/the-best-practice-with-google-place-autocomplete-api-on-react-939211e8b4ce
 import React, { useState, useEffect, useRef, Fragment } from "react";
-import  {gapikey} from '../../api/keys'
-import LocationMap from './LocationMap'
+import  {gapikey} from '../api/keys'
+import LocationMap from '../components/layout/LocationMap'
 
 let autoComplete;
 const loadScript = (url, callback) => {
@@ -37,8 +37,6 @@ const handleScriptLoad = (updateQuery, autoCompleteRef) => {
 const  handlePlaceSelect = async(updateQuery) =>{
 	const addressObject = autoComplete.getPlace();
   const query = addressObject;
-  // const id = addressObject.place_id
-  // const query = addressObject.place_id
   updateQuery(query);
 	// console.log(query);
 }

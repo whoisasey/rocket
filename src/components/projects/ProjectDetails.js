@@ -1,7 +1,5 @@
-import React, {Fragment} from 'react'
-import {connect} from 'react-redux'
-import { compose } from 'redux';
-import {gapikey} from '../../api/keys'
+import React from 'react'
+import {Link} from 'react-router-dom'
 
 const ProjectDetails = ({ project}) => {
 
@@ -12,24 +10,16 @@ const ProjectDetails = ({ project}) => {
 		</div>
 			)
 	} else {
-	const map_api = `https://www.google.com/maps/embed/v1/directions`
 
-	const {name, description, origin_name, destination_name, origin_id, destination_id} = project;
+	const {name, id, description, origin_name, destination_name, origin_id, destination_id} = project;
 
-	const embed = () => {
-		return (
-			<iframe
-			width="450"
-			height="250"
-			frameBorder="0"
-			src={`${map_api}?key=${gapikey}&origin=place_id:${origin_id}&destination=place_id:${destination_id}`} allowFullScreen>
-			</iframe>
-		)
-	}
-	return (
-		<div className="ui fluid card">
+
+	return(
+			<div className="ui fluid card">
 			<div className="content">
-				<div className="header">{`${origin_name} to ${destination_name}`}</div>
+				<div className="header">
+					{`${origin_name} to ${destination_name}`}
+					</div>
 			</div>
 			<div className="content">
 				<div className="event">
@@ -43,12 +33,14 @@ const ProjectDetails = ({ project}) => {
 				</div>
 			</div>
 			<div className="content">
-				{embed()}
+				<Link to={`/project/${id}`}>See More Details</Link>
 			</div>
 
 		</div>
 	)
 	}
 }
+
+
 
 export default ProjectDetails

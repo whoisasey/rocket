@@ -1,17 +1,15 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import ProjectDetails from './ProjectDetails'
-import {Link} from 'react-router-dom'
 
-export const ProjectList = ({projects}) => {
-	// console.log(projects)
-	// const sortedProjs = projects.sort((a,b) => b.createdAt - a.createdAt)
-	// console.log(sortedProjs)
-
+const ProjectList = ({projects}) => {
 	return (
 		<div>
 			{projects && projects.map(project => {
 				return (
-						<ProjectDetails key={project.id} project={project}/>
+						<ProjectDetails
+						key={project.id}
+						project={project}
+						/>
 					)
 				}
 				)}

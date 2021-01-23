@@ -1,24 +1,14 @@
 import React, {Component, Fragment, useState} from 'react'
-import SearchBar from '../layout/SearchBar'
 import {connect} from 'react-redux';
 import GooglePlacesAutoComplete, {geocodeByAddress, getLatLng} from 'react-google-places-autocomplete'
 import {gapikey} from '../../api/keys'
-
-
-// import LocationSearch from '../layout/LocationSearch'
-// import LocationSearchBar from '../layout/LocationSearchBar'
-// import LocationMap from '../layout/LocationMap'
-// import {
-//   geocodeByAddress,
-//   getLatLng,
-// } from 'react-places-autocomplete';
-import SearchLocationInput from '../layout/SearchLocationInput'
 import {Inputs} from './FormComponents/Inputs'
-import {createProject, CreateProject} from '../../store/actions/projectActions'
+import {createProject} from '../../store/actions/projectActions'
 
+const geocode = `https://maps.googleapis.com/maps/api/geocode/json?address=`
+const address = `Toronto,ON`
 
 class CreateProjectForm extends Component {
-	// states - {project name, description, start, end}, {}
 	constructor(props) {
 		super(props);
 		this.state ={
@@ -30,10 +20,10 @@ class CreateProjectForm extends Component {
 			destination_name: [],
 			addresses: [],
 			createdAt: new Date(),
-
+			coords: []
 		}
-		// console.log("props", props)
 		 } 
+
 
 	handleChange =(e) => {
 		const {value} = e.target
@@ -51,6 +41,7 @@ class CreateProjectForm extends Component {
 			origin_id: origin_id.concat(place_id),
 			origin_name: origin_name.concat(description)
 		})
+		console.log(origin_id, origin_name)
 	}
 
 	handleDestination = e => {
@@ -66,48 +57,67 @@ class CreateProjectForm extends Component {
 		const {createProject, history} = this.props
 		e.preventDefault();
 		e.stopPropagation()
-		createProject(this.state)
-		history.push('/')
+		// createProject(this.state)
+		// history.push('/')
 
 		const {addresses, origin_id, destination_id, origin_name, destination_name, name} = this.state;
+
+		// const origin_coords =  this.getCoordinates(origin_name)
+		// const destin_coords =  this.getCoordinates(destination_name)
+		// console.log(origin_coords, destin_coords)
 		this.setState({
 			addresses: addresses.push(origin_id, destination_id),
 		})
 		console.log("state", this.state)
 	}
-		//  handleAddresses = (e) => {
-		// 	console.log(e.target)
-		// 	const {addresses} = this.state
-		// 	this.setState({
-		// 		addresses: addresses.concat(e.target.value)
-		// 	})
-		// 	console.log(addresses)
-		// }
 
-
-  // handleChange = address => {
-  //   this.setState({ address });
-  // };
-
-  // handleSelect = (address) => {
-	// 		geocodeByAddress(address)
-	// 	.then(results => 	getLatLng(results[0]))
-	// 	.then(latLng => {
-	// 		console.log('Success', latLng)
-	// 		this.setState({
-	// 			origin: latLng
-	// 		})
-	// 	})
-	// 	.catch(error => console.error('Error', error));
-	// 	this.setState({ address	});
-  // };
-
+	// getCoordinates = async(address) => {
+	// 	return (await fetch(`${geocode}${address}&key=${gapikey}`)).json()
+	// }
 	
+	// getCoordinates =  async (address) => {
+	// 	try {
+	// 		const response =  await fetch(`${geocode}${address}&key=${gapikey}`);
+	// 		const data = await response.json()
+	// 		console.log(data.results[0].geometry.location)
+	// 		// location.push(data.results[0].geometry.location)
+	// 		return data.results
+	// 	} catch (err){
+	// 		console.log(err)
+	// 		}
+	// 	}
+
+	getCoordinates = async (address) => {
+		let response = await fetch(`${geocode}${address}&key=${gapikey}`)
+		let data = await response.json()
+		let updatedData = data.results
+		console.log(updatedData)
+		this.state.addresses.push(updatedData)
+
+		return
+	}
+	
+	// 	returnData = async(place) => {
+	// 	location = await this.getCoordinates(place)
+	// 	console.log(location.results[0].geometry.location)
+	// 		return location
+	// }
 	render() {
-		// console.log("origin", this.state.origin)
+		
+		// this.getCoordinates(address)
 		// console.log(this.state.addresses)
+
+			// const data = async (place) => {
+			// 	let data = []
+			// 	try {
+			// 		data = await this.getCoordinates(place)
+			// 	} catch (e) {
+			// 		console.error("error", e)
+			// 	}
+			// 	return data
+			// }
+
 		const {name,description, origin, destination} = this.state
-		// console.log({"name": name, "description": description, "origin": origin, "destination": destination})
 	return (
 		<Fragment>
 			<form className="ui form"
@@ -129,6 +139,8 @@ class CreateProjectForm extends Component {
 					name={description}
 					onChange={this.handleChange}
 				/>
+{/* 
+				<LocationSearch /> */}
 
 				<GooglePlacesAutoComplete apiKey={gapikey} 
 				selectProps={{
@@ -145,28 +157,6 @@ class CreateProjectForm extends Component {
 				placeholder: 'End Address'
 				}}
 				/>
-
-				{/* <SearchLocationInput /> */}
-				{/* <SearchBar state={this.state}
-				onChange={this.handleChange}
-				/> */}
-				{/* <LocationSearchBar 
-				state={this.state}
-				value={this.state.origin}
-					handleAddresses={this.handleAddresses}
-					onChange={this.handleChange}
-					onSelect={this.handleSelect}
-				/>
-				<LocationMap 
-				state={this.state}
-				/> */}
-								{/* <LocationSearchBar 
-				state={this.state}
-					handleAddresses={this.handleAddresses}
-					handleChange={this.handleChange}
-					handleSelect={this.handleSelect}
-				/> */}
-				{/* <LocationSearchBar /> */}
 				<button className="ui button">Submit Project</button>
 			</form>
 		</Fragment>

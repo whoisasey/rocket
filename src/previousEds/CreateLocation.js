@@ -2,8 +2,8 @@
 
 import React, {Fragment, useState, useRef} from 'react'
 import SearchLocationInput from '../layout/SearchLocationInput'
-import SearchBar from '../layout/SearchBar'
-import {Inputs} from './FormComponents/Inputs'
+import SearchBar from '../components/layout/SearchBar'
+import {Inputs} from '../components/projects/FormComponents/Inputs'
 
 
 const CreateLocation = () => {

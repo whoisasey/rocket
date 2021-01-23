@@ -16,9 +16,18 @@ export const createProject = (project) => {
 	}
 }
 
-export const removeProject = (id) => {
+
+export const deleteProject = (id) => {
+	return (dispatch) => {
+		dispatch({
+			type: 'DELETE_PROJECT',
+			id
+		})
+	}
+}
+
+export const updateProject = (project) => {
 	return {
-		type: 'DELETE_PROJECT',
-		id
+		type: 'EDIT_PROJECT'
 	}
 }

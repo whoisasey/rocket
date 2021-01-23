@@ -1,8 +1,7 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {NavLink} from 'react-router-dom';
 
-
-export const Nav = () => {
+ const Nav = () => {
 	return (
 		<ul className="ui menu">
 			<li className="item">
