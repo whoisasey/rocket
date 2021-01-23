@@ -7,7 +7,7 @@ import CreateProjectForm from './components/projects/CreateProjectForm'
 import ProjectSummary from './components/projects/ProjectSummary'
 import LocationMap from './components/layout/LocationMap'
 
-const App = (props) => {
+const App = () => {
 
 	return (
 		<Fragment>
