@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const ProjectDetails = ({ project}) => {
+const ProjectDetails = ({ project, handleDelete}) => {
 
 	if (project === undefined) {
 			return (
@@ -10,6 +10,8 @@ const ProjectDetails = ({ project}) => {
 		</div>
 			)
 	} else {
+
+
 
 	const {name, id, description, origin_name, destination_name, origin_id, destination_id} = project;
 
@@ -34,6 +36,7 @@ const ProjectDetails = ({ project}) => {
 			</div>
 			<div className="content">
 				<Link to={`/project/${id}`}>See More Details</Link>
+				<button className="ui button" onClick={handleDelete}>Delete</button>
 			</div>
 
 		</div>

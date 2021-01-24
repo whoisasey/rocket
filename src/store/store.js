@@ -12,6 +12,5 @@ const defaultState = {
 }
 
 const store = createStore(rootReducer, defaultState, applyMiddleware(thunk))
-// console.log(store.getState())
 
 export default store

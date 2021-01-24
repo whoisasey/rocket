@@ -21,18 +21,13 @@ import { deleteProject } from '../../store/actions/projectActions';
 		)
 	}
 
-	const handleDelete = (id) => {
-		// deleteProject(id)
-		console.log(id)
-	}
 	return (
 		<Fragment>
 			<h2>{`${origin_name} to ${destination_name}`}</h2>
-			<p>{`Start: ${origin_add}`}</p>
-			<p>{`End: ${destination_add}`}</p>
+			<p>{`Start: ${origin_name}`}</p>
+			<p>{`End: ${destination_name}`}</p>
 			<p>{description}</p>
-			<button className="ui button">Edit</button>
-			<button className="ui button" onClick={()=>handleDelete(id)}>Delete</button>
+			<button className="ui button">Delete</button>
 
 			<h3>Your Suggested Driving Route</h3>
 				{embed()}

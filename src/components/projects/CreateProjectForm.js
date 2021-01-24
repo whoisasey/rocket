@@ -21,20 +21,7 @@ class CreateProjectForm extends Component {
 			destination_add: [], //get address from lat/lang and setstate
 			destination_geo: {},
 			destination_name: '',
-			addresses: [
-				// {lat: 49.2827291,lng: -123.1207375},
-				// { lat: 47.5615096, lng: -52.7125768 },
-				// {lat: 51.17839720000001,lng: -115.5708074},
-				// { lat: 46.8138783, lng: -71.2079809 },
-				// { lat: 45.4215296, lng: -75.69719309999999 },
-				// { lat: 44.2311717, lng: -76.4859544 },
-				// { lat: 43.653226, lng: -79.3831843 },
-				// { lat: 45.5016889, lng: -73.567256 },
-				// { lat: 50.3915811, lng: -105.5348562 },
-				// { lat: 49.895136, lng: -97.13837439999999 },
-			],
 			createdAt: new Date(),
-			coords: []
 		}
 	} 
 
@@ -73,7 +60,6 @@ class CreateProjectForm extends Component {
 			destination_name: description,
 			destination_geo: geo
 		})
-		console.log(this.state.destination_geo)
 	}
 		
 	handleSubmit = (e) => {
@@ -83,14 +69,12 @@ class CreateProjectForm extends Component {
 		createProject(this.state)
 		history.push('/')
 
-		const {addresses, origin_geo, origin_name, destination_name, destination_geo, name} = this.state;
 		console.log("state", this.state)
 	}
 
 	render() {
 
-
-		const {name,description, origin, destination, origin_name, destination_name} = this.state
+		const {name,description, origin_name, destination_name} = this.state
 	return (
 		<Fragment>
 			<form className="ui form"
