@@ -1,12 +1,10 @@
-import React, {Component, Fragment, useState} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux';
 import GooglePlacesAutoComplete, {geocodeByAddress, getLatLng} from 'react-google-places-autocomplete'
 import {gapikey} from '../../api/keys'
 import {Inputs} from './FormComponents/Inputs'
 import {createProject} from '../../store/actions/projectActions'
 import uuid from 'react-uuid'
-const geocode = `https://maps.googleapis.com/maps/api/geocode/json?address=`
-const address = `Toronto,ON`
 
 class CreateProjectForm extends Component {
 	constructor(props) {
@@ -37,8 +35,6 @@ class CreateProjectForm extends Component {
 		const { description} = e.value
 		const geo = await geocodeByAddress(description).then(results => 	getLatLng(results[0]))
 		.then(({ lat, lng }) =>{
-			// const newLat = Math.floor(lat)
-			// const newLng = Math.floor(lng)
 			return { lat, lng}
 		})
 		this.setState({
@@ -70,41 +66,36 @@ class CreateProjectForm extends Component {
 
 	render() {
 
-		const {name,description, origin_name, destination_name} = this.state
+		const {description, origin_name, destination_name} = this.state
 	return (
 		<Fragment>
 			<form className="ui form"
 				onSubmit={this.handleSubmit}
 			>
-				<Inputs 
-					label="Project Name"
-					type="text"
-					id={name}
-					name={name}
-					onChange={this.handleChange}
-				/>
-			<Inputs 
-					label="Project Description"
-					type="text"
-					id={description}
-					name={description}
-					onChange={this.handleChange}
-				/>
-
-				<GooglePlacesAutoComplete apiKey={gapikey} 
+				<GooglePlacesAutoComplete apiKey={gapikey}
 				selectProps={{
 				origin_name,
 				onChange: (e)=>this.handleOrigin(e),
 				placeholder: 'Start Address',
 				}}
 				/>
-				<GooglePlacesAutoComplete apiKey={gapikey} 
+				<GooglePlacesAutoComplete apiKey={gapikey}
 				selectProps={{
 				destination_name,
 				onChange: (e)=>this.handleDestination(e),
 				placeholder: 'End Address'
 				}}
 				/>
+				<div className="ui items">
+					<Inputs
+					label="Project Description"
+					type="text"
+					id={description}
+					name={description}
+					onChange={this.handleChange}
+					/>
+				</div>
+
 				<button className="ui button">Submit Project</button>
 			</form>
 		</Fragment>
