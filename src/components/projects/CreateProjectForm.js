@@ -16,9 +16,7 @@ class CreateProjectForm extends Component {
 			id: uuid(),
 			description: '',
 			origin_name: '',
-			origin_add: [], //get address from lat/lang and setstate? 
 			origin_geo: {},
-			destination_add: [], //get address from lat/lang and setstate
 			destination_geo: {},
 			destination_name: '',
 			createdAt: new Date(),
@@ -39,9 +37,9 @@ class CreateProjectForm extends Component {
 		const { description} = e.value
 		const geo = await geocodeByAddress(description).then(results => 	getLatLng(results[0]))
 		.then(({ lat, lng }) =>{
-			const newLat = Math.floor(lat)
-			const newLng = Math.floor(lng)
-			return { lat:newLat, lng: newLng}
+			// const newLat = Math.floor(lat)
+			// const newLng = Math.floor(lng)
+			return { lat, lng}
 		})
 		this.setState({
 			origin_name: description,
@@ -68,8 +66,6 @@ class CreateProjectForm extends Component {
 		e.stopPropagation()
 		createProject(this.state)
 		history.push('/')
-
-		console.log("state", this.state)
 	}
 
 	render() {
@@ -82,7 +78,6 @@ class CreateProjectForm extends Component {
 			>
 				<Inputs 
 					label="Project Name"
-					// placeholder="test"
 					type="text"
 					id={name}
 					name={name}
@@ -90,21 +85,17 @@ class CreateProjectForm extends Component {
 				/>
 			<Inputs 
 					label="Project Description"
-					// value="test"
 					type="text"
 					id={description}
 					name={description}
 					onChange={this.handleChange}
 				/>
-{/* 
-				<LocationSearch /> */}
 
 				<GooglePlacesAutoComplete apiKey={gapikey} 
 				selectProps={{
 				origin_name,
 				onChange: (e)=>this.handleOrigin(e),
 				placeholder: 'Start Address',
-				// onSelect: handleValueSelect
 				}}
 				/>
 				<GooglePlacesAutoComplete apiKey={gapikey} 

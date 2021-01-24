@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react'
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import {connect} from 'react-redux'
 import Nav from './components/layout/Nav.js'
 import Dashboard from './components/dashboard/Dashboard'
 import CreateProjectForm from './components/projects/CreateProjectForm'

@@ -3,11 +3,7 @@ import ProjectDetails from './ProjectDetails'
 
 const ProjectList = ({projects}) => {
 
-	// const [list, setList] = useState([])
 	const [filter, setFilter] = useState("")
-			// 	const handleDelete = () => {
-			// 	console.log(project.id)
-			// }
 
 	const handleEdit = e => {
 		// setList()
@@ -24,9 +20,11 @@ const ProjectList = ({projects}) => {
 	// 	}
 	// })
 
+	const sortedList = projects.sort((a,b) => b.createdAt - a.createdAt)
+// console.log('is this sorted?', sortedList)
 	return (
 		<div>
-			{projects.map(project => {
+			{sortedList.map(project => {
 
 			const handleDelete = () => {
 				// console.log(project.id)

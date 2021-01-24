@@ -8,19 +8,13 @@ const LocationMap = (props) => {
 	const [origin, setOrigin] = useState("Toronto,ON")
 	const [destination, setDestination] = useState("Toronto,ON")
 	const [mapRender, setMapRender] = useState(false)
-	// const [waypoints, setWaypoints] = useState([])
-	// console.log(props.projects)
 	const {projects} = props
-	const geo_api = `https://maps.googleapis.com/maps/api/geocode/json`
+	// const geo_api = `https://maps.googleapis.com/maps/api/geocode/json`
 	const map_api = `https://www.google.com/maps/embed/v1/directions`
 	const directions_api = `https://maps.googleapis.com/maps/api/directions/json?`
 
-	
 	const waypoint1 = "St.John's,NL,Canada"
-	const waypoint2 = "Montreal,QC,Canada"
-	
-
-	// console.log(waypoint1.replace(/\s+/g, ''))
+	const waypoint2 = "Banff,AB,Canada"
 
 	const handleOrigin = e => {
 		const {value} = e.target
@@ -35,9 +29,6 @@ const LocationMap = (props) => {
 		setDestination(valForMap)
 	}
 
-		// const json = `${directions_api}origin=${origin.replace(/\s+/g, '')}&destination=${destination}&waypoints=optimize:true|${waypoint1}|${waypoint2}&key=${gapikey}`
-	
-	// console.log(json)
 let data = []
 // * to take the projects data, and extract the origin and destinations - DONE
 // * stringify and remove spaces between the text - DONE
@@ -49,8 +40,9 @@ projects.filter(item => {
 		const newItem =  `${item.origin_name}`
 	const itemToString = newItem.replace(/\s/g, '')
 	if (itemToString !== origin) {
-		data.push(`${itemToString}`)
+		 data.push(`${itemToString}`)
 	}
+	return data
 	})
 
 	projects.filter(item => {
@@ -59,14 +51,18 @@ projects.filter(item => {
 			if (itemToString !== destination) {
 		data.push(`${itemToString}`)
 	}
+	return data
 })
-// console.log(data)
-const slice = data.slice(0, -1).join('|') + '|' + data.slice(-1)
-// console.log(slice)
+	const slice = data.slice(0, -1).join('|') + '|' + data.slice(-1)
+
+	const embedUrl = `${map_api}?key=${gapikey}&origin=${origin}&destination=${destination}&waypoints=${slice}`
 
 
-const embedUrl = `${map_api}?key=${gapikey}&origin=${origin}&destination=${destination}&waypoints=${slice}`
-			// console.log(embedUrl)
+	// const optimize = `${directions_api}origin=${origin}&destination=${destination}&waypoints=optimize:true|${slice}&key=${gapikey}`
+	// console.log(optimize)
+
+
+
 
 	const originDrop = projects.map(item => {
 		return <option >{item.origin_name}</option>
@@ -75,6 +71,8 @@ const embedUrl = `${map_api}?key=${gapikey}&origin=${origin}&destination=${desti
 	const destDrop = projects.map(item =>{
 		return <option>{item.destination_name}</option>
 	})
+
+
 
 	const handleEmbed = () => {
 		setMapRender(true)
@@ -87,6 +85,7 @@ const embedUrl = `${map_api}?key=${gapikey}&origin=${origin}&destination=${desti
 			width="600"
 			height="500"
 			frameBorder="0"
+			title="map"
 			src={embedUrl} allowFullScreen>
 			</iframe>
 			)
@@ -109,6 +108,7 @@ const embedUrl = `${map_api}?key=${gapikey}&origin=${origin}&destination=${desti
 					</select>
 				</div>
 			</div>
+			<p>If left blank, your route will Start and End in Toronto by Default</p>
 			<button className="ui button" onClick={handleEmbed}>Get Routes</button>
 
 			{embedMap()}
