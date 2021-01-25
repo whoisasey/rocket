@@ -1,31 +1,34 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import { deleteProject } from '../../store/actions/projectActions'; 
+// if my deleteProject function was successful, it would be used in this file
 
-const ProjectDetails = ({ project, handleDelete}) => {
+const ProjectDetails = ({ project, deleteProject}) => {
 
-	if (project === undefined) {
+	const {id, description, origin_name, destination_name} = project;
+
+	const renderDescription = () => {
+		if (description !== '') {
 			return (
-		<div className="ui segment">
-		<div className="ui active centered inline loader"></div>
-		</div>
+				<Fragment>
+					<strong>Description:</strong> {description}
+				</Fragment>
 			)
-	} else {
-
-
-
-	const {name, id, description, origin_name, destination_name, origin_id, destination_id} = project;
-
-
+		}
+		return null
+	}
 	return(
 			<div className="ui fluid card">
 			<div className="content">
 				<div className="header">
 					{`${origin_name} to ${destination_name}`}
+				<Link to={`/project/${id}`} className="ui right floated button">See More Details</Link>
 					</div>
 			</div>
 			<div className="content">
 				<div className="event">
-					<strong>Description:</strong> {description}
+					{renderDescription()}
 					</div>
 			</div>
 			<div className="content">
@@ -35,15 +38,24 @@ const ProjectDetails = ({ project, handleDelete}) => {
 				</div>
 			</div>
 			<div className="content">
-				<Link to={`/project/${id}`}>See More Details</Link>
-				<button className="ui button" onClick={handleDelete}>Delete</button>
+				{/* <button className="ui button" onClick={()=>deleteProject(id)}>Delete</button> */}
 			</div>
 
 		</div>
 	)
 	}
+
+const mapStateToProps = state => {
+	return {
+		projects: state.projects
+	}
 }
 
 
+const mapDispatchToProps = (dispatch) => {
+	return {
+		deleteProject: (id) => dispatch(deleteProject(id))
+	}
+}
 
-export default ProjectDetails
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectDetails)

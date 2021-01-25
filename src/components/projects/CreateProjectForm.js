@@ -45,7 +45,6 @@ class CreateProjectForm extends Component {
 
 	handleDestination = async (e) => {
 		const {description} = e.value
-
 		const geo = await geocodeByAddress(description).then(results => 	getLatLng(results[0]))
 		.then(({ lat, lng }) =>{
 			return { lat, lng }
@@ -66,9 +65,11 @@ class CreateProjectForm extends Component {
 
 	render() {
 
-		const {description, origin_name, destination_name} = this.state
+	const {description, origin_name, destination_name} = this.state
+
 	return (
 		<Fragment>
+			<h1>Add New Project</h1>
 			<form className="ui form"
 				onSubmit={this.handleSubmit}
 			>
@@ -95,12 +96,10 @@ class CreateProjectForm extends Component {
 					onChange={this.handleChange}
 					/>
 				</div>
-
 				<button className="ui button">Submit Project</button>
 			</form>
 		</Fragment>
-	)
-	}
+	)}
 }
 
 const mapStateToProps = state => {

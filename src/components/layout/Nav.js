@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom';
 
- const Nav = () => {
+const Nav = () => {
 	return (
 		<ul className="ui menu">
 			<li className="item">
@@ -9,7 +9,7 @@ import {NavLink} from 'react-router-dom';
 			</li>
 			<li className="item">
 				<NavLink to="/create">
-					New Project
+					New Route
 				</NavLink>
 			</li>
 			<li className="item">

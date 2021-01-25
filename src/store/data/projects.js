@@ -1,14 +1,15 @@
-	const data = [
-		{
-		name: "vancouver-banff",
-		id:"778e3698-a712-4586-9278-dc9143407be3",
-		description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, assumenda? Quidem quis temporibus delectus quaerat praesentium perferendis autem consequatur dignissimos.",
-		origin_name: ["Vancouver, BC, Canada"],
-		origin_geo: {lat: 49.2827291,lng: -123.1207375},
-		destination_name: [ "Banff, AB, Canada"],
-		destination_geo: {lat: 51.17839720000001,lng: -115.5708074},
-		createdAt: new Date('2020-01-21'),
-		},
+//to add more dummy data, uncomment lines 23-32 or 33-42
+const data = [
+	{
+	name: "vancouver-banff",
+	id:"778e3698-a712-4586-9278-dc9143407be3",
+	description:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, assumenda? Quidem quis temporibus delectus quaerat praesentium perferendis autem consequatur dignissimos.",
+	origin_name: ["Vancouver, BC, Canada"],
+	origin_geo: {lat: 49.2827291,lng: -123.1207375},
+	destination_name: [ "Banff, AB, Canada"],
+	destination_geo: {lat: 51.17839720000001,lng: -115.5708074},
+	createdAt: new Date('2020-01-21'),
+	},
 	{
 	name: "st.johns-quebec city",
 	id:"84bc325f-b2a1-4e43-86fa-ebba0aa0cbb9",
@@ -18,7 +19,6 @@
 	destination_name: [ "Quebec, QC, Canada"],
 	destination_geo:  { lat: 46.8138783, lng: -71.2079809 },
 	createdAt: new Date('2019-01-22')
-
 	},
 	// {
 	// name: "ottawa-kingston",
@@ -29,7 +29,6 @@
 	// destination_name: [ "Kingston, ON, Canada"],
 	// destination_geo: { lat: 44.2311717, lng: -76.4859544 },
 	// createdAt: new Date('2019-06-22')
-
 	// },
 	// {
 	// 	name: "toronto-montreal",
@@ -40,7 +39,6 @@
 	// 	destination_name: [  "Montreal, QC, Canada"],
 	// 	destination_geo:  { lat: 45.5016889, lng: -73.567256 },
 	// 	createdAt: new Date('2019-06-10')
-
 	// },
 	{
 	name: "winnipeg-moosejaw",

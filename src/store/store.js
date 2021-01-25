@@ -5,7 +5,7 @@ import rootReducer from '../store/reducers/index'
 import projects from './data/projects'
 
 //create object for default data
-const defaultState = {
+export const defaultState = {
 	projects,
 }
 
