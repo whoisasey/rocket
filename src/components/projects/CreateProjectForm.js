@@ -32,6 +32,8 @@ class CreateProjectForm extends Component {
 
 	handleOrigin = async e => {
 		const { description} = e.value
+
+		//since the GooglePlacesAutoComplete does not return a lat lng that's easily accessible, we have to run this function
 		const geo = await geocodeByAddress(description).then(results => 	getLatLng(results[0]))
 		.then(({ lat, lng }) =>{
 			return { lat, lng}
@@ -64,41 +66,42 @@ class CreateProjectForm extends Component {
 
 	render() {
 
-	const {description, origin_name, destination_name} = this.state
+		const {description, origin_name, destination_name} = this.state
 
-	return (
-		<Fragment>
-			<h1>Add New Route</h1>
-			<form className="ui form"
-				onSubmit={this.handleSubmit}
-			>
-				<GooglePlacesAutoComplete apiKey={gapikey}
-				selectProps={{
-				origin_name,
-				onChange: (e)=>this.handleOrigin(e),
-				placeholder: 'Start Address',
-				}}
-				/>
-				<GooglePlacesAutoComplete apiKey={gapikey}
-				selectProps={{
-				destination_name,
-				onChange: (e)=>this.handleDestination(e),
-				placeholder: 'End Address'
-				}}
-				/>
-				<div className="ui items">
-					<Inputs
-					label="Route Description"
-					type="text"
-					id={description}
-					name={description}
-					onChange={this.handleChange}
+		return (
+			<Fragment>
+				<h1>Add New Route</h1>
+				<form className="ui form"
+					onSubmit={this.handleSubmit}
+				>
+					<GooglePlacesAutoComplete apiKey={gapikey}
+					selectProps={{
+					origin_name,
+					onChange: (e)=>this.handleOrigin(e),
+					placeholder: 'Start Address',
+					}}
 					/>
-				</div>
-				<button className="ui button">Submit Route</button>
-			</form>
-		</Fragment>
-	)}
+					<GooglePlacesAutoComplete apiKey={gapikey}
+					selectProps={{
+					destination_name,
+					onChange: (e)=>this.handleDestination(e),
+					placeholder: 'End Address'
+					}}
+					/>
+					<div className="ui items">
+						<Inputs
+						label="Route Description"
+						type="text"
+						id={description}
+						name={description}
+						onChange={this.handleChange}
+						/>
+					</div>
+					<button className="ui button">Submit Route</button>
+				</form>
+			</Fragment>
+		)
+	}
 }
 
 const mapStateToProps = state => {
