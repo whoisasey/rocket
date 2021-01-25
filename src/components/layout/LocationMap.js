@@ -52,11 +52,11 @@ const LocationMap = (props) => {
 	const embedUrl = `${map_api}?key=${gapikey}&origin=${origin}&destination=${destination}&waypoints=${slice}&zoom=4`
 
 	const startLocationDropdown = projects.map(item => {
-		return <option >{item.origin_name}</option>
+		return <option key={item.id}>{item.origin_name}</option>
 	})
 
 	const endLocationDropdown = projects.map(item =>{
-		return <option>{item.destination_name}</option>
+		return <option key={item.id}>{item.destination_name}</option>
 	})
 
 	// shows embed map on click, so that it won't be rendering when the user is selecting Origin and Destination addresses

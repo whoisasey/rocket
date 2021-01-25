@@ -14,6 +14,7 @@ import {connect} from 'react-redux'
 		width="800"
 		height="500"
 		frameBorder="0"
+		title="route map"
 		src={`${map_api}?key=${gapikey}&origin=${origin_geo.lat},${origin_geo.lng}&destination=${destination_geo.lat},${destination_geo.lng}&zoom=7`} allowFullScreen>
 		</iframe>
 		)
