@@ -24,6 +24,7 @@ $ npm run start
 ## Demo
 
 Check out the [Demo](https://whoisasey.github.io/rocket/)
+_Note_ if you see a blank page upon load, click "Home"
 
 ## How to use
 
@@ -53,4 +54,4 @@ _Note:_ A route project name will automatically be created based on your Start a
 
 Any code marked with `//` is a developer note
 
-To build on the app, I would want to add a NoSQL database like MongoDB, so data can be persisted and scalable. This would also include building out Mongoose Schemas for adding data
+To build on the app, I would want to add a NoSQL database like MongoDB, so data can be persisted and scalable. This would also include building out Mongoose Schemas and Routes for adding data

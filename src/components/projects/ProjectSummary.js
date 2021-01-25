@@ -25,7 +25,7 @@ import {connect} from 'react-redux'
 			<p>{`Start: ${origin_name}`}</p>
 			<p>{`End: ${destination_name}`}</p>
 			<p>{description}</p>
-			<h3>Your Suggested Driving Route</h3>
+			<h3>Your Suggested Driving Routes</h3>
 				{embed()}
 		</Fragment>
 	)

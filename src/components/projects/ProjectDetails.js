@@ -23,7 +23,7 @@ const ProjectDetails = ({ project, deleteProject}) => {
 			<div className="content">
 				<div className="header">
 					{`${origin_name} to ${destination_name}`}
-				<Link to={`/project/${id}`} className="ui right floated button">See More Details</Link>
+				<Link to={`/route/${id}`} className="ui right floated button">See More Details</Link>
 					</div>
 			</div>
 			<div className="content">

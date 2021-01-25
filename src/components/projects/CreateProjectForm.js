@@ -21,7 +21,6 @@ class CreateProjectForm extends Component {
 		}
 	} 
 
-
 	handleChange =(e) => {
 		const {value} = e.target
 		this.setState({
@@ -69,7 +68,7 @@ class CreateProjectForm extends Component {
 
 	return (
 		<Fragment>
-			<h1>Add New Project</h1>
+			<h1>Add New Route</h1>
 			<form className="ui form"
 				onSubmit={this.handleSubmit}
 			>
@@ -89,14 +88,14 @@ class CreateProjectForm extends Component {
 				/>
 				<div className="ui items">
 					<Inputs
-					label="Project Description"
+					label="Route Description"
 					type="text"
 					id={description}
 					name={description}
 					onChange={this.handleChange}
 					/>
 				</div>
-				<button className="ui button">Submit Project</button>
+				<button className="ui button">Submit Route</button>
 			</form>
 		</Fragment>
 	)}

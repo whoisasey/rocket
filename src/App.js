@@ -10,19 +10,19 @@ const App = () => {
 
 	return (
 		<Fragment>
-				<div className="ui container">
-			<BrowserRouter>
-				<Nav />
-				<Switch>
-					<div className="wrapper">
-					<Route exact path="/" component={Dashboard} />
-					<Route path="/routes" component={LocationMap} />
-					<Route exact path="/project/:id" component={ProjectSummary}/>
-					<Route exact path='/create' component={CreateProjectForm} />
-					</div>
-				</Switch>
-			</BrowserRouter>
-				</div>
+			<div className="ui container">
+				<BrowserRouter>
+					<Nav />
+					<Switch>
+						<div className="wrapper">
+						<Route exact path="/" component={Dashboard} />
+						<Route path="/routes" component={LocationMap} />
+						<Route exact path="/route/:id" component={ProjectSummary}/>
+						<Route exact path='/create' component={CreateProjectForm} />
+						</div>
+					</Switch>
+				</BrowserRouter>
+			</div>
 		</Fragment>
 	)
 }
