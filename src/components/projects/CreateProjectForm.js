@@ -60,6 +60,7 @@ class CreateProjectForm extends Component {
 		const {createProject, history} = this.props
 		e.preventDefault();
 		e.stopPropagation()
+
 		createProject(this.state)
 		history.push('/')
 	}

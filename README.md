@@ -60,6 +60,8 @@ Any code marked with `//` is a developer note
 
 Although this didn't require a server or database, I'd love to add a NoSQL database like MongoDB (either locally or on the cloud), so data can be persisted and scalable. This would also include building out Mongoose Schemas and Routes.
 
-I'd also like to add a user auth component so that only an Admin/Manager user can create/edit/delete new routes. Another user type, such as the driver can only view routes and route information, and/or mark the route as completed. Another user type, such as the Receiver, can view if the route has been dispatched or is en route.
+I'd also like to add a user auth component so that only an Admin/Manager user-type can create/edit/delete new routes, and other top-level commands.
+A Driver user-type can only view routes and route information, and/or mark the route as completed.
+A Reciver user-type can view if the route has been dispatched or is en route.
 
-_Console Errors and Warnings:_ These are errors from utilizing some of the libraries installed
+_Console Errors and Warnings:_ These are errors from utilizing some of the libraries installed and Google API
