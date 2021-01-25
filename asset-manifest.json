@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/rocket/static/css/main.1753197d.chunk.css",
-    "main.js": "/rocket/static/js/main.8c8335f0.chunk.js",
-    "main.js.map": "/rocket/static/js/main.8c8335f0.chunk.js.map",
+    "main.js": "/rocket/static/js/main.00e610d4.chunk.js",
+    "main.js.map": "/rocket/static/js/main.00e610d4.chunk.js.map",
     "runtime-main.js": "/rocket/static/js/runtime-main.fc9c3d8a.js",
     "runtime-main.js.map": "/rocket/static/js/runtime-main.fc9c3d8a.js.map",
     "static/js/2.12a2b731.chunk.js": "/rocket/static/js/2.12a2b731.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.fc9c3d8a.js",
     "static/js/2.12a2b731.chunk.js",
     "static/css/main.1753197d.chunk.css",
-    "static/js/main.8c8335f0.chunk.js"
+    "static/js/main.00e610d4.chunk.js"
   ]
 }
